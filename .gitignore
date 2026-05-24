@@ -1,0 +1,33 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node (in case anyone adds tooling later)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Local dev artifacts
+.cache/
+.tmp/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+
+# Test output
+coverage/

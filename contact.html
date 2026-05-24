@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Wisconsin Go Hiking Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="contact">
+  <div id="site-header"></div>
+
+  <section class="search-hero">
+    <div class="container">
+      <span style="display:inline-block;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);font-weight:600;margin-bottom:14px;">Contact</span>
+      <h1>Get in touch.</h1>
+      <p>Questions about a hike, membership, our stewardship work, or just want to say hello? Drop us a note. We answer every message — usually within a couple of days.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start;">
+      <div>
+        <h2>Reach us</h2>
+        <div class="pillar" style="margin-bottom:18px;">
+          <h3 style="margin-bottom:4px;font-size:1.05rem;">📮 Mailing address</h3>
+          <p style="margin:0;color:var(--ink-soft);">Wisconsin Go Hiking Club<br>P.O. Box 0815<br>Madison, WI 53701</p>
+        </div>
+        <div class="pillar" style="margin-bottom:18px;">
+          <h3 style="margin-bottom:4px;font-size:1.05rem;">✉️ Email</h3>
+          <p style="margin:0;color:var(--ink-soft);">hello@wghc.example.org<br>For trail-finder corrections: trails@wghc.example.org</p>
+        </div>
+        <div class="pillar">
+          <h3 style="margin-bottom:4px;font-size:1.05rem;">📅 Office hours</h3>
+          <p style="margin:0;color:var(--ink-soft);">We're a volunteer organization — there's no office. The board meets the first Tuesday of every month, 6:30 PM, at the Goodman Community Center in Madison. Members welcome.</p>
+        </div>
+      </div>
+
+      <form class="form-card" onsubmit="event.preventDefault(); this.querySelector('.form-result').style.display='block';">
+        <h2 style="margin-bottom:6px;">Send a message</h2>
+        <p style="color:var(--muted);font-size:.92rem;margin-bottom:20px;">Required fields marked with *</p>
+
+        <div class="form-row">
+          <label>Name *</label>
+          <input type="text" required>
+        </div>
+        <div class="form-row">
+          <label>Email *</label>
+          <input type="email" required>
+        </div>
+        <div class="form-row">
+          <label>What's this about?</label>
+          <select>
+            <option>General question</option>
+            <option>Joining the club</option>
+            <option>A specific hike</option>
+            <option>Trail-finder feedback</option>
+            <option>Trail stewardship / volunteering</option>
+            <option>Press / interview request</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Your message *</label>
+          <textarea rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="btn full large">Send message</button>
+        <div class="form-result" style="display:none;margin-top:18px;padding:14px;background:rgba(45,90,63,.12);border-radius:var(--radius-sm);color:var(--forest-deep);font-size:.95rem;">
+          ✓ Thanks for writing — we'll be in touch within a few days.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section cream">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>Common questions.</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+        <div class="pillar">
+          <h3>Do I need to be a member to join a hike?</h3>
+          <p>No. Your first hike is always free. We just ask that you sign up for membership before your fourth visit.</p>
+        </div>
+        <div class="pillar">
+          <h3>What should I bring?</h3>
+          <p>Sturdy shoes, water (a liter per two miles), a snack, and weather-appropriate layers. The trip leader will note anything extra in the hike description.</p>
+        </div>
+        <div class="pillar">
+          <h3>Are dogs welcome?</h3>
+          <p>On most hikes, yes — leashed. A few segments cross sensitive habitat where dogs are not permitted; the schedule notes which.</p>
+        </div>
+        <div class="pillar">
+          <h3>Are hikes accessible?</h3>
+          <p>Many trails on our finder are flat, paved, or boardwalk. Filter by "Easy" difficulty in the Trail Finder, or contact us — we'll find a good fit.</p>
+        </div>
+        <div class="pillar">
+          <h3>Can I lead a hike on a trail I know?</h3>
+          <p>Yes — after attending three group hikes and completing our short leadership orientation. We love guest leaders.</p>
+        </div>
+        <div class="pillar">
+          <h3>How do you choose hikes?</h3>
+          <p>Trip leaders propose hikes monthly. Our Outings Coordinator balances geography, difficulty, and season. The Trail Finder feeds many ideas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="partials.js"></script>
+</body>
+</html>

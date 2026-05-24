@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trail Finder — Wisconsin Go Hiking Club</title>
+  <meta name="description" content="Search Wisconsin's Ice Age Trail and North Country Trail segments — plus state parks and local trail areas. Elevation profiles and interactive maps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="trails">
+  <div id="site-header"></div>
+
+  <section class="search-hero">
+    <div class="container">
+      <span style="display:inline-block;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);font-weight:600;margin-bottom:14px;">Trail Finder</span>
+      <h1>Search Wisconsin's trails.</h1>
+      <p>Every segment of the Ice Age Trail and North Country Trail, plus 70+ state parks &amp; forests, and 295 local trail areas across Wisconsin. Match by name, county, terrain, or difficulty.</p>
+
+      <div class="search-bar">
+        <span style="font-size:1.2rem;color:var(--muted);">🔍</span>
+        <input id="searchInput" type="search" placeholder="Try &quot;Devil's Lake&quot;, &quot;Bayfield&quot;, &quot;quartzite&quot;, &quot;waterfall&quot;…" autocomplete="off">
+        <button class="clear-x" id="clearBtn" aria-label="Clear" title="Clear">×</button>
+        <button class="search-go" type="button" id="searchGo">Search</button>
+      </div>
+
+      <div class="search-tools">
+        <div class="tool-group">
+          <label class="lbl">Show</label>
+          <div class="chips" id="kindChips">
+            <button class="chip active" data-kind="all">All</button>
+            <button class="chip iat"  data-kind="iat">🦣 Ice Age</button>
+            <button class="chip nct"  data-kind="nct">✦ North Country</button>
+            <button class="chip"      data-kind="park">🏞️ State Parks</button>
+            <button class="chip"      data-kind="area">🌲 Local Areas</button>
+          </div>
+        </div>
+
+        <div class="tool-group">
+          <label class="lbl">Difficulty</label>
+          <div class="chips" id="diffChips">
+            <button class="chip active" data-diff="all">Any</button>
+            <button class="chip easy" data-diff="easy">Easy</button>
+            <button class="chip moderate" data-diff="moderate">Moderate</button>
+            <button class="chip strenuous" data-diff="strenuous">Strenuous</button>
+          </div>
+        </div>
+
+        <div class="tool-group">
+          <label class="lbl">Segments</label>
+          <div class="chips" id="typeChips">
+            <button class="chip active" data-type="all">All</button>
+            <button class="chip" data-type="segment">Main</button>
+            <button class="chip" data-type="connecting">Connecting</button>
+          </div>
+        </div>
+
+        <div class="tool-group" style="margin-left:auto;">
+          <label class="lbl">Sort</label>
+          <select id="sortSelect" class="sort-select">
+            <option value="az">A → Z</option>
+            <option value="za">Z → A</option>
+            <option value="miles-asc">Shortest first</option>
+            <option value="miles-desc">Longest first</option>
+            <option value="gain-desc">Most elevation gain</option>
+            <option value="kind">By type</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--parchment);">
+    <div class="container">
+      <div class="result-summary">
+        <div id="summaryText">Loading trail data…</div>
+        <div>
+          <button id="openMapBtn" class="chip" style="cursor:pointer;">🗺️ Show map</button>
+          &nbsp;<a href="#" id="resetLink" style="font-weight:600;">Reset filters</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview map (toggleable) -->
+  <section id="mapSection" class="hidden" style="background:var(--parchment);">
+    <div class="container">
+      <div id="overviewMap" style="height:520px;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow-sm);margin-bottom:24px;"></div>
+    </div>
+  </section>
+
+  <section style="background:var(--parchment);min-height:60vh;">
+    <div class="container">
+      <div class="results" id="resultsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Detail panel -->
+  <div class="detail-panel" id="detailPanel" role="dialog" aria-modal="true">
+    <div class="detail-panel-inner" id="detailInner">
+      <button class="close-x" id="closeDetail" aria-label="Close">×</button>
+      <div id="detailBody"></div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="data/trails.js"></script>
+  <script src="data/segments.js"></script>
+  <script src="data/parks.js"></script>
+  <script src="data/areas.js"></script>
+  <script src="data/elevation_summary.js"></script>
+  <script src="partials.js"></script>
+  <script src="trail-finder.js"></script>
+</body>
+</html>

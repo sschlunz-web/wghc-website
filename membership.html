@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership — Wisconsin Go Hiking Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="membership">
+  <div id="site-header"></div>
+
+  <section class="search-hero">
+    <div class="container">
+      <span style="display:inline-block;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);font-weight:600;margin-bottom:14px;">Join the club</span>
+      <h1>Become a member.</h1>
+      <p>Members get unlimited group hikes, advance schedule, our quarterly Trail Talk newsletter, gear discounts at three Wisconsin outfitters, and a vote in club governance. All dues stay in Wisconsin and fund our trail stewardship work.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="tiers">
+        <div class="tier">
+          <h3>Trailhead</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin:0;">For curious newcomers</p>
+          <div class="price">$25 <small>/ year</small></div>
+          <ul>
+            <li>Unlimited group hikes</li>
+            <li>Quarterly newsletter</li>
+            <li>Members-only carpool board</li>
+            <li>Voting privileges</li>
+          </ul>
+          <a href="#join" class="btn full secondary">Choose Trailhead</a>
+        </div>
+
+        <div class="tier featured">
+          <span class="ribbon">Most popular</span>
+          <h3>Backcountry</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin:0;">For regulars and families</p>
+          <div class="price">$45 <small>/ year</small></div>
+          <ul>
+            <li>Everything in Trailhead</li>
+            <li>Household membership (up to 4)</li>
+            <li>Gear discounts at 3 outfitters</li>
+            <li>Trip-leader training eligible</li>
+            <li>Priority on shuttle-required hikes</li>
+          </ul>
+          <a href="#join" class="btn full">Choose Backcountry</a>
+        </div>
+
+        <div class="tier">
+          <h3>Trail Steward</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin:0;">For supporters</p>
+          <div class="price">$100 <small>/ year</small></div>
+          <ul>
+            <li>Everything in Backcountry</li>
+            <li>Annual Trail Stewards' dinner</li>
+            <li>Recognition in our annual report</li>
+            <li>Direct $50 to trail-maintenance grants</li>
+          </ul>
+          <a href="#join" class="btn full secondary">Choose Steward</a>
+        </div>
+      </div>
+
+      <div id="join" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+        <div>
+          <h2>Sign up</h2>
+          <p style="color:var(--ink-soft);">Fill out the form and we'll send a confirmation email with payment instructions. Memberships run on a rolling 12-month basis.</p>
+          <p style="color:var(--ink-soft);font-size:.92rem;">
+            <strong>Tax-deductible:</strong> WGHC is a registered 501(c)(3). Tier dues above $25 are partially deductible.<br><br>
+            <strong>Scholarships:</strong> No-cost memberships are available for any Wisconsin resident who wants one. Just mention it in the notes.
+          </p>
+        </div>
+
+        <form class="form-card" onsubmit="event.preventDefault(); this.querySelector('.form-result').style.display='block'; this.scrollIntoView({behavior:'smooth'});">
+          <div class="form-row">
+            <label>Name</label>
+            <input type="text" required placeholder="First and last">
+          </div>
+          <div class="form-row">
+            <label>Email</label>
+            <input type="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-row">
+            <label>City / Town</label>
+            <input type="text" required placeholder="Madison, Eau Claire, …">
+          </div>
+          <div class="form-row">
+            <label>Tier</label>
+            <select required>
+              <option value="trailhead">Trailhead — $25/year</option>
+              <option value="backcountry" selected>Backcountry — $45/year</option>
+              <option value="steward">Trail Steward — $100/year</option>
+              <option value="scholarship">Scholarship (no cost)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Notes (optional)</label>
+            <textarea rows="3" placeholder="Anything we should know? Accessibility needs, hike interests, region preferences…"></textarea>
+          </div>
+          <button type="submit" class="btn full large">Submit application</button>
+          <div class="form-result" style="display:none;margin-top:18px;padding:14px;background:rgba(45,90,63,.12);border-radius:var(--radius-sm);color:var(--forest-deep);font-size:.95rem;">
+            ✓ Thanks! We'll be in touch within a few days with payment details and your member welcome packet.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="partials.js"></script>
+</body>
+</html>
