@@ -61,6 +61,71 @@
     </div>
   </section>
 
+  <!-- Google Calendar -->
+  <section class="section tight">
+    <div class="container">
+      <div class="section-head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:14px;">
+        <div>
+          <div class="eyebrow">Club calendar</div>
+          <h2>Hikes &amp; events.</h2>
+        </div>
+        <div class="cal-view-switch" role="tablist" aria-label="Calendar view">
+          <button class="chip active" data-view="MONTH">Month</button>
+          <button class="chip"        data-view="WEEK">Week</button>
+          <button class="chip"        data-view="AGENDA">Agenda</button>
+        </div>
+      </div>
+
+      <p style="color:var(--muted);font-size:.85rem;margin:-4px 0 12px;">
+        Times shown in Central Time. Click any event for details.
+        Apple users: if the calendar doesn't load in Safari, try Chrome or open
+        <a id="calOpenLink" href="#" target="_blank" rel="noopener" style="font-weight:600;">in Google Calendar</a>.
+      </p>
+
+      <div class="gcal-wrap">
+        <iframe id="gcalFrame"
+                src=""
+                style="border:0"
+                width="100%" height="600"
+                frameborder="0" scrolling="no"
+                title="Wisconsin Go Hiking Club calendar"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <script src="config.js"></script>
+  <script>
+    // -------- Google Calendar embed --------
+    // Calendar ID is set in config.js
+    const CALENDAR_ID = (window.WGHC_CONFIG && window.WGHC_CONFIG.calendarId) || 'wisconsingohikingclub%40gmail.com';
+    const TZ          = (window.WGHC_CONFIG && window.WGHC_CONFIG.calendarTz) || 'America%2FChicago';
+
+    function calSrc(mode) {
+      return `https://calendar.google.com/calendar/embed`
+           + `?src=${CALENDAR_ID}`
+           + `&ctz=${TZ}`
+           + `&mode=${mode}`
+           + `&showTitle=0&showPrint=0&showCalendars=0&showTz=0&wkst=1`
+           + `&bgcolor=%23fbf7ec&color=%232d4a2c`;
+    }
+
+    function setView(mode) {
+      document.getElementById('gcalFrame').src = calSrc(mode);
+      document.getElementById('calOpenLink').href =
+        `https://calendar.google.com/calendar/u/0/r?cid=${CALENDAR_ID}`;
+    }
+
+    document.querySelector('.cal-view-switch').addEventListener('click', e => {
+      const btn = e.target.closest('button[data-view]'); if (!btn) return;
+      document.querySelectorAll('.cal-view-switch .chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      setView(btn.dataset.view);
+    });
+
+    // Initial view — agenda on phones, month on bigger screens
+    setView(window.matchMedia('(max-width: 640px)').matches ? 'AGENDA' : 'MONTH');
+  </script>
+
   <section class="section tight">
     <div class="container">
       <h2 style="margin-bottom:14px;">June 2026</h2>

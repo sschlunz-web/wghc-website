@@ -42,8 +42,8 @@
         </div>
         <div class="pillar">
           <div class="icon">3️⃣</div>
-          <h3>Fill out the form</h3>
-          <p>Ready to join? Complete the membership form below. Annual dues keep the club running.</p>
+          <h3>Sign up &amp; pay dues</h3>
+          <p>Submit the form below, then pay annual dues online via our secure payment portal.</p>
         </div>
       </div>
     </div>
@@ -80,6 +80,7 @@
     </div>
   </section>
 
+  <!-- Membership form -->
   <section class="section tight">
     <div class="container">
       <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:36px;align-items:start;" id="join">
@@ -87,47 +88,47 @@
           <div class="section-head">
             <div class="eyebrow">Membership form</div>
             <h2>Apply to join.</h2>
-            <p style="font-size:.95rem;">Fill out the form and we'll email you with payment instructions. Annual dues run on a 12-month rolling basis.</p>
+            <p style="font-size:.95rem;">Submit the form and you'll be taken straight to our secure payment page. Annual dues run on a 12-month rolling basis.</p>
           </div>
 
           <div class="pillar" style="background:var(--cream);border-color:var(--line);">
             <h3 style="font-size:1rem;margin-bottom:6px;">Cost-sharing model</h3>
-            <p style="font-size:.88rem;color:var(--ink-soft);margin:0;">Most hikes are free. When there are costs (parking, shuttle gas, group lodging on camping trips), they're divided evenly among everyone there.</p>
+            <p style="font-size:.88rem;color:var(--ink-soft);margin:0;">Most hikes are free. When there are costs (parking, shuttle gas, group lodging), they're divided evenly among everyone there.</p>
           </div>
           <div class="pillar" style="margin-top:12px;">
             <h3 style="font-size:1rem;margin-bottom:6px;">Scholarships available</h3>
-            <p style="font-size:.88rem;color:var(--ink-soft);margin:0;">Cost is never a reason to stay home. Mention it in the notes and we'll waive dues.</p>
+            <p style="font-size:.88rem;color:var(--ink-soft);margin:0;">Cost is never a reason to stay home. Choose "Scholarship" below and we'll waive dues.</p>
           </div>
         </div>
 
-        <form class="form-card" onsubmit="event.preventDefault(); this.querySelector('.form-result').style.display='block'; this.scrollIntoView({behavior:'smooth'});">
+        <form class="form-card" id="memberForm">
           <div class="form-row">
             <label>Full name</label>
-            <input type="text" required placeholder="First and last">
+            <input name="name" type="text" required placeholder="First and last">
           </div>
           <div class="form-row">
             <label>Email</label>
-            <input type="email" required placeholder="you@example.com">
+            <input name="email" type="email" required placeholder="you@example.com">
           </div>
           <div class="form-row">
             <label>Phone (for last-minute cancellations)</label>
-            <input type="tel" placeholder="Optional">
+            <input name="phone" type="tel" placeholder="Optional">
           </div>
           <div class="form-row">
             <label>City / Town</label>
-            <input type="text" required placeholder="Madison, Eau Claire, Milwaukee…">
+            <input name="city" type="text" required placeholder="Madison, Eau Claire, Milwaukee…">
           </div>
           <div class="form-row">
             <label>Membership type</label>
-            <select required>
-              <option value="individual">Individual</option>
-              <option value="household">Household (2+ adults at one address)</option>
-              <option value="scholarship">Scholarship (no cost)</option>
+            <select name="tier" id="tierSelect" required>
+              <option value="individual">Individual — $25 / year</option>
+              <option value="household">Household — $40 / year (2+ adults)</option>
+              <option value="scholarship">Scholarship — no cost</option>
             </select>
           </div>
           <div class="form-row">
             <label>How did you hear about us?</label>
-            <select>
+            <select name="referral">
               <option>I came on a hike</option>
               <option>Friend or family member</option>
               <option>Trail Finder website</option>
@@ -137,18 +138,87 @@
           </div>
           <div class="form-row">
             <label>Notes (optional)</label>
-            <textarea rows="3" placeholder="Hike preferences, accessibility needs, region of the state you'd like to explore…"></textarea>
+            <textarea name="notes" rows="3" placeholder="Hike preferences, accessibility needs, region of the state you'd like to explore…"></textarea>
           </div>
-          <button type="submit" class="btn full large">Submit application</button>
-          <div class="form-result" style="display:none;margin-top:14px;padding:12px;background:rgba(45,74,44,.12);border-radius:var(--radius-sm);color:var(--forest-deep);font-size:.9rem;">
-            ✓ Thanks! We'll be in touch within a few days with payment instructions and a welcome packet.
+
+          <button type="submit" class="btn full large" id="submitBtn">
+            <span id="submitLabel">Continue to payment →</span>
+          </button>
+
+          <p style="margin:14px 0 0;font-size:.78rem;color:var(--muted);text-align:center;">
+            🔒 Secure payment via our payment processor. We never see your card details.
+          </p>
+
+          <div class="form-result" id="formResult" style="display:none;margin-top:14px;padding:12px;background:rgba(45,74,44,.12);border-radius:var(--radius-sm);color:var(--forest-deep);font-size:.9rem;">
+            ✓ Application received! For scholarship memberships we'll be in touch within a few days.
           </div>
         </form>
       </div>
     </div>
   </section>
 
+  <!-- Already a member -->
+  <section class="section cream tight">
+    <div class="container">
+      <div class="cta-banner" style="background:var(--bark);">
+        <div>
+          <h2>Renewing? Pay annual dues.</h2>
+          <p>Already a member and your year is up? Pay online — no need to fill out the form again.</p>
+        </div>
+        <a href="#" id="renewBtn" class="btn">Pay dues →</a>
+      </div>
+    </div>
+  </section>
+
   <div id="site-footer"></div>
+  <script src="config.js"></script>
   <script src="partials.js"></script>
+  <script>
+    // Update tier-select labels to update the submit button text
+    const tierSelect  = document.getElementById('tierSelect');
+    const submitLabel = document.getElementById('submitLabel');
+    const formResult  = document.getElementById('formResult');
+    const form        = document.getElementById('memberForm');
+    const renewBtn    = document.getElementById('renewBtn');
+
+    function updateLabel() {
+      submitLabel.textContent = tierSelect.value === 'scholarship'
+        ? 'Submit application'
+        : 'Continue to payment →';
+    }
+    tierSelect.addEventListener('change', updateLabel);
+    updateLabel();
+
+    // Default renew link → individual rate
+    renewBtn.href = window.WGHC_CONFIG.paymentUrls.individual;
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const tier = tierSelect.value;
+
+      // For paid tiers, redirect to payment provider with applicant info
+      // in URL params (most providers pre-fill name/email from these)
+      if (tier === 'individual' || tier === 'household') {
+        const url    = window.WGHC_CONFIG.paymentUrls[tier];
+        const data   = new FormData(form);
+        const params = new URLSearchParams({
+          prefilled_email:   data.get('email') || '',
+          // Stripe Payment Links: prefilled_email is supported.
+          // Donorbox: ?name=...&email=... is supported.
+          name:  data.get('name')  || '',
+          email: data.get('email') || ''
+        });
+        const sep = url.includes('?') ? '&' : '?';
+        window.location.href = url + sep + params.toString();
+        return;
+      }
+
+      // Scholarship path: no payment — just show thanks inline
+      formResult.style.display = 'block';
+      formResult.scrollIntoView({behavior:'smooth', block:'center'});
+      // In a real deployment, ALSO submit form data to Formspree / Netlify
+      // Forms / Google Form so the Membership Chair receives the application.
+    });
+  </script>
 </body>
 </html>

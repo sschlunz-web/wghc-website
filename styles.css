@@ -933,6 +933,47 @@ select.sort-select {
 .leaflet-popup-content { margin: 10px 12px !important; font-size: .88rem !important; }
 .leaflet-container { font-family: var(--font-sans); }
 
+/* Google Calendar embed */
+.gcal-wrap {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: #fff;
+}
+.gcal-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 640px;
+}
+@media (max-width: 720px) {
+  .gcal-wrap iframe { height: 540px; }
+}
+@media (max-width: 480px) {
+  .gcal-wrap iframe { height: 460px; }
+}
+
+.cal-view-switch {
+  display: inline-flex;
+  background: var(--parchment);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+.cal-view-switch .chip {
+  border: 0;
+  background: transparent;
+  padding: 6px 14px;
+  font-size: .82rem;
+}
+.cal-view-switch .chip.active {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--cream);
+}
+
 /* Difficulty key (hikes page) */
 .diff-key {
   background: var(--parchment);
