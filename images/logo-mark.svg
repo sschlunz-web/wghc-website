@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="WGHC mark">
+  <title>Wisconsin Go Hiking Club</title>
+  <!-- Outer cream disc -->
+  <circle cx="100" cy="100" r="96" fill="#fbf7ec" stroke="#1c3320" stroke-width="3"/>
+  <!-- Inner thin ring -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="#1c3320" stroke-width="2"/>
+  <!-- GO text -->
+  <g font-family="Fraunces, Georgia, serif" font-weight="700" fill="#1c3320" text-anchor="middle">
+    <text x="100" y="123" font-size="84" letter-spacing="-2">GO</text>
+  </g>
+</svg>

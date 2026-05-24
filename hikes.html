@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hike Schedule — Wisconsin Go Hiking Club</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2d4a2c">
+  <title>Future Hikes — Wisconsin Go Hiking Club</title>
+  <link rel="icon" type="image/png" href="images/logo-mark.png">
+  <link rel="apple-touch-icon" href="images/logo-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,59 +17,111 @@
 
   <section class="search-hero">
     <div class="container">
-      <span style="display:inline-block;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);font-weight:600;margin-bottom:14px;">Group hikes · 2026</span>
+      <span style="display:inline-block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--forest);font-weight:600;margin-bottom:10px;">Future hikes · 2026</span>
       <h1>The hike schedule.</h1>
-      <p>We hike year-round, every weekend. All hikes are free and open to first-time visitors — no RSVP required. Members receive turn-by-turn directions, carpool listings, and trip-leader contact info.</p>
+      <p>We hike every weekend, year-round — sometimes multiple hikes a day. No RSVP needed for guests. Just <strong>arrive 10 minutes early</strong> to meet the leader and check in.</p>
 
       <div class="search-tools">
         <div class="tool-group">
           <label class="lbl">Difficulty</label>
           <div class="chips" id="diffChips">
             <button class="chip active" data-diff="all">All</button>
-            <button class="chip easy" data-diff="easy">Easy</button>
-            <button class="chip moderate" data-diff="moderate">Moderate</button>
-            <button class="chip strenuous" data-diff="strenuous">Strenuous</button>
+            <button class="chip" data-diff="rambler">Rambler</button>
+            <button class="chip" data-diff="L1">Level 1</button>
+            <button class="chip" data-diff="L2">Level 2</button>
+            <button class="chip" data-diff="L3">Level 3</button>
+            <button class="chip" data-diff="L4">Level 4</button>
           </div>
         </div>
         <div class="tool-group">
-          <label class="lbl">Trail system</label>
+          <label class="lbl">Trail</label>
           <div class="chips" id="trailChips">
             <button class="chip active" data-trail="all">All</button>
             <button class="chip iat" data-trail="iat">Ice Age</button>
             <button class="chip nct" data-trail="nct">NCT</button>
-            <button class="chip nrt" data-trail="nrt">Recreation</button>
+            <button class="chip nrt" data-trail="nrt">Local Trails</button>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section tight">
     <div class="container">
-      <h2 style="margin-bottom:24px;">June 2026</h2>
+      <details class="diff-key">
+        <summary>What do the difficulty levels mean? <span class="caret">›</span></summary>
+        <div class="diff-key-grid">
+          <div><strong class="lvl lvl-rambler">Rambler</strong><p>Leisurely pace, frequent stops. Great for new hikers and families.</p></div>
+          <div><strong class="lvl lvl-1">Level 1</strong><p>Paved paths or flat dirt. Comfortable for almost anyone.</p></div>
+          <div><strong class="lvl lvl-2">Level 2</strong><p>Moderate pace, mild hills, possibly uneven footing.</p></div>
+          <div><strong class="lvl lvl-3">Level 3</strong><p>Brisk pace, longer distances, real elevation. Trail-fit hikers.</p></div>
+          <div><strong class="lvl lvl-4">Level 4</strong><p>Bushwhacking, mud, steep hills. Experienced hikers only.</p></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <h2 style="margin-bottom:14px;">June 2026</h2>
       <div class="events" id="eventsJune"></div>
     </div>
   </section>
 
-  <section class="section cream">
+  <section class="section cream tight">
     <div class="container">
-      <h2 style="margin-bottom:24px;">July 2026</h2>
+      <h2 style="margin-bottom:14px;">July 2026</h2>
       <div class="events" id="eventsJuly"></div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section tight">
     <div class="container">
-      <h2 style="margin-bottom:24px;">August 2026</h2>
+      <h2 style="margin-bottom:14px;">August 2026</h2>
       <div class="events" id="eventsAug"></div>
     </div>
   </section>
 
-  <section class="section forest">
-    <div class="container" style="text-align:center;">
-      <h2>Want to lead a hike?</h2>
-      <p style="max-width:600px;margin:0 auto 24px;">Members can become trip leaders after attending three group hikes and completing our trail-leadership orientation. We're always looking for new leaders, especially in the north and west of the state.</p>
-      <a href="contact.html" class="btn" style="background:var(--iat);color:var(--ink);">Get in touch</a>
+  <section class="section tight">
+    <div class="container">
+      <div class="cta-banner">
+        <div>
+          <h2>Lead a hike on a date you love.</h2>
+          <p>Multiple hikes can run the same day. Pick one that's open and we'll help you set it up.</p>
+        </div>
+        <a href="contact.html" class="btn">Volunteer to lead →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cream tight">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Good to know</div>
+        <h2>Before you go.</h2>
+      </div>
+      <div class="pillars scroll-mobile">
+        <div class="pillar">
+          <div class="icon">⏰</div>
+          <h3>Arrive 10 min early</h3>
+          <p>Find the leader, sign in as a guest if it's your first time, and we'll get rolling on time.</p>
+        </div>
+        <div class="pillar">
+          <div class="icon">💵</div>
+          <h3>Costs are shared</h3>
+          <p>Any parking, shuttle, or carpool gas is split evenly among everyone on the hike.</p>
+        </div>
+        <div class="pillar">
+          <div class="icon">🛡️</div>
+          <h3>Hike at your own pace</h3>
+          <p>Each hiker is responsible for their own safety. Bring water, layers, and good footwear.</p>
+        </div>
+        <div class="pillar">
+          <div class="icon">📞</div>
+          <h3>Cancellations</h3>
+          <p>Leaders post cancellations as early as they can. When in doubt, contact the leader directly.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -75,22 +130,23 @@
   <script>
     const HIKES = [
       // June
-      { m:"june", trail:"iat", diff:"moderate", date:"Sat · Jun 6 · 8:30 AM", title:"Devil's Lake — East Bluff Loop", miles:5,   blurb:"Classic Baraboo Hills quartzite scramble with lake views.", lead:"Karen R.", meet:"Devil's Lake South Shore lot" },
-      { m:"june", trail:"nct", diff:"moderate", date:"Sun · Jun 14 · 9:00 AM",title:"Copper Falls & the NCT",          miles:7,   blurb:"Waterfalls, gorges, and a 7-mile chunk of the North Country Trail.",      lead:"Dan P.",   meet:"Copper Falls SP main lot" },
-      { m:"june", trail:"iat", diff:"easy",     date:"Sat · Jun 20 · 7:30 AM",title:"Ice Age Trail — Lodi Marsh",       miles:8.5, blurb:"Linear point-to-point through prairie and marsh, wildflowers in bloom.",  lead:"Steve S.", meet:"Lodi Park & Ride" },
-      { m:"june", trail:"nrt", diff:"easy",     date:"Sun · Jun 28 · 8:00 AM",title:"Chequamegon Long Mile Loop",        miles:4.2, blurb:"Quiet forest loop in the northwoods. Carpool from Green Bay.",            lead:"Hannah K.",meet:"Mukwa trailhead" },
+      { m:"june", trail:"iat", diff:"L2",      date:"Sat · Jun 6 · 8:30 AM",  title:"Devil's Lake — East Bluff Loop",     miles:5,   blurb:"Classic Baraboo Hills quartzite scramble with lake views.",                lead:"Karen R.", meet:"Devil's Lake South Shore lot" },
+      { m:"june", trail:"nct", diff:"L2",      date:"Sun · Jun 14 · 9:00 AM", title:"Copper Falls & the NCT",             miles:7,   blurb:"Waterfalls, gorges, and a 7-mile chunk of the North Country Trail.",       lead:"Dan P.",   meet:"Copper Falls SP main lot" },
+      { m:"june", trail:"iat", diff:"L1",      date:"Sat · Jun 20 · 7:30 AM", title:"Ice Age Trail — Lodi Marsh",         miles:8.5, blurb:"Linear point-to-point through prairie and marsh, wildflowers in bloom.",   lead:"Steve S.", meet:"Lodi Park & Ride" },
+      { m:"june", trail:"nrt", diff:"rambler", date:"Sun · Jun 28 · 8:00 AM", title:"Chequamegon Long Mile Loop",         miles:4.2, blurb:"Easy forest loop in the northwoods. Carpool from Green Bay.",             lead:"Hannah K.",meet:"Mukwa trailhead" },
       // July
-      { m:"july", trail:"iat", diff:"strenuous",date:"Sat · Jul 4 · 6:00 AM", title:"Ice Age — Kettlebowl Climb",        miles:11,  blurb:"Big-mileage day on Wisconsin's most rugged glacial terrain. Hat & water!", lead:"Karen R.", meet:"Kettlebowl Ski Area" },
-      { m:"july", trail:"nrt", diff:"moderate", date:"Sun · Jul 12 · 8:00 AM",title:"Newport State Park — Door Loop",    miles:6.3, blurb:"Lake Michigan shoreline trail. We picnic at Europe Bay.",                lead:"Elena L.", meet:"Newport SP lot 3" },
-      { m:"july", trail:"nct", diff:"moderate", date:"Sat · Jul 18 · 8:30 AM",title:"Brule River NCT Segment",           miles:7.5, blurb:"Cool old-growth pines along the Bois Brule. Bring bug spray.",            lead:"Joe M.",   meet:"Brule River SF HQ" },
-      { m:"july", trail:"iat", diff:"easy",     date:"Sun · Jul 26 · 9:00 AM",title:"Cross Plains — Indian Lake Stretch",miles:5.2, blurb:"Driftless rolling hills. Excellent intro hike for first-timers.",         lead:"Dan P.",   meet:"Indian Lake County Park" },
-      // Aug
-      { m:"aug",  trail:"iat", diff:"moderate", date:"Sat · Aug 1 · 7:30 AM", title:"Mecan River — Ice Age East",        miles:9,   blurb:"Pine barrens, sand country, and the Mecan headwaters.",                  lead:"Karen R.", meet:"Mecan River trailhead" },
-      { m:"aug",  trail:"nrt", diff:"easy",     date:"Sun · Aug 9 · 9:00 AM", title:"Wyalusing Bluff Trail",             miles:4.8, blurb:"Where the Mississippi meets the Wisconsin. Bald-eagle territory.",       lead:"Hannah K.",meet:"Wyalusing SP main parking" },
-      { m:"aug",  trail:"iat", diff:"strenuous",date:"Sat · Aug 15 · 6:30 AM",title:"Chippewa Moraine Thru-Hike",        miles:13,  blurb:"Big linear day on the kettle moraine. Shuttle vehicles required.",        lead:"Steve S.", meet:"Chippewa Moraine Visitor Center" },
-      { m:"aug",  trail:"nct", diff:"moderate", date:"Sun · Aug 23 · 8:00 AM",title:"Bayfield Peninsula NCT",            miles:8,   blurb:"Lake Superior overlooks. We may swim if the weather holds.",              lead:"Joe M.",   meet:"Mt. Ashwabay base" },
+      { m:"july", trail:"iat", diff:"L4",      date:"Sat · Jul 4 · 6:00 AM",  title:"Ice Age — Kettlebowl Climb",         miles:11,  blurb:"Big-mileage day on Wisconsin's most rugged glacial terrain.",              lead:"Karen R.", meet:"Kettlebowl Ski Area" },
+      { m:"july", trail:"nrt", diff:"L2",      date:"Sun · Jul 12 · 8:00 AM", title:"Newport State Park — Door Loop",     miles:6.3, blurb:"Lake Michigan shoreline trail. We picnic at Europe Bay.",                  lead:"Elena L.", meet:"Newport SP lot 3" },
+      { m:"july", trail:"nct", diff:"L3",      date:"Sat · Jul 18 · 8:30 AM", title:"Brule River NCT Segment",            miles:7.5, blurb:"Cool old-growth pines along the Bois Brule. Bring bug spray.",             lead:"Joe M.",   meet:"Brule River SF HQ" },
+      { m:"july", trail:"iat", diff:"L1",      date:"Sun · Jul 26 · 9:00 AM", title:"Cross Plains — Indian Lake Stretch", miles:5.2, blurb:"Driftless rolling hills. Excellent intro hike for first-timers.",          lead:"Dan P.",   meet:"Indian Lake County Park" },
+      // August
+      { m:"aug",  trail:"iat", diff:"L3",      date:"Sat · Aug 1 · 7:30 AM",  title:"Mecan River — Ice Age East",         miles:9,   blurb:"Pine barrens, sand country, and the Mecan headwaters.",                    lead:"Karen R.", meet:"Mecan River trailhead" },
+      { m:"aug",  trail:"nrt", diff:"rambler", date:"Sun · Aug 9 · 9:00 AM",  title:"Wyalusing Bluff Trail",              miles:4.8, blurb:"Where the Mississippi meets the Wisconsin. Bald-eagle territory.",         lead:"Hannah K.",meet:"Wyalusing SP main parking" },
+      { m:"aug",  trail:"iat", diff:"L4",      date:"Sat · Aug 15 · 6:30 AM", title:"Chippewa Moraine Thru-Hike",         miles:13,  blurb:"Big linear day on the kettle moraine. Shuttle vehicles required.",         lead:"Steve S.", meet:"Chippewa Moraine Visitor Center" },
+      { m:"aug",  trail:"nct", diff:"L2",      date:"Sun · Aug 23 · 8:00 AM", title:"Bayfield Peninsula NCT",             miles:8,   blurb:"Lake Superior overlooks. We may swim if the weather holds.",                lead:"Joe M.",   meet:"Mt. Ashwabay base" },
     ];
 
+    const DIFF_LABEL = { rambler:"Rambler", L1:"Level 1", L2:"Level 2", L3:"Level 3", L4:"Level 4" };
     let curDiff = "all", curTrail = "all";
 
     function render() {
@@ -98,17 +154,10 @@
                        july: document.getElementById("eventsJuly"),
                        aug:  document.getElementById("eventsAug") };
       Object.values(months).forEach(el => el.innerHTML = "");
-
       const filtered = HIKES.filter(h =>
         (curDiff === "all" || h.diff === curDiff) &&
         (curTrail === "all" || h.trail === curTrail)
       );
-
-      if (!filtered.length) {
-        months.june.innerHTML = '<div class="no-results"><h3>No hikes match those filters.</h3><p>Try widening your search.</p></div>';
-        return;
-      }
-
       filtered.forEach(h => {
         const card = `
           <article class="event-card ${h.trail}">
@@ -116,10 +165,10 @@
             <div class="event-body">
               <span class="date-chip">📅 ${h.date}</span>
               <h3>${h.title}</h3>
-              <p style="font-size:.92rem;color:var(--ink-soft);margin:0">${h.blurb}</p>
+              <p style="font-size:.86rem;color:var(--ink-soft);margin:0">${h.blurb}</p>
               <div class="event-meta">
                 <span>📏 ${h.miles} mi</span>
-                <span>📈 ${h.diff[0].toUpperCase() + h.diff.slice(1)}</span>
+                <span>📈 ${DIFF_LABEL[h.diff] || h.diff}</span>
                 <span>👤 ${h.lead}</span>
               </div>
               <div class="event-meta" style="border-top:0;padding-top:0;">
@@ -129,7 +178,6 @@
           </article>`;
         if (months[h.m]) months[h.m].insertAdjacentHTML("beforeend", card);
       });
-
       Object.entries(months).forEach(([k,el]) => {
         if (!el.innerHTML) el.innerHTML = `<div class="no-results" style="grid-column:1/-1;"><p>No hikes match in this month.</p></div>`;
       });

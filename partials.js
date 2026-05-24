@@ -1,27 +1,25 @@
-/* Shared partials: header + footer rendered on every page */
+/* Shared header + footer (rendered on every page) */
 (function () {
   const page = document.body.dataset.page || "";
 
   const header = `
     <header class="site-header">
       <div class="container nav">
-        <a href="index.html" class="brand">
-          <span class="logo">W</span>
-          <span class="brand-text">
-            Wisconsin Go Hiking Club
-            <small>Est. 1924 · Wisconsin Trails</small>
-          </span>
+        <a href="index.html" class="brand" aria-label="Wisconsin Go Hiking Club home">
+          <img src="images/logo-banner.png" alt="Wisconsin Go Hiking Club" class="brand-img-wide" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <img src="images/logo-mark.png"   alt="WGHC"                     class="brand-img-mark">
+          <span class="brand-text">Wisconsin Go Hiking Club</span>
         </a>
         <button class="menu-toggle" aria-label="Open menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html"      class="${page==='home'?'active':''}">Home</a></li>
           <li><a href="about.html"      class="${page==='about'?'active':''}">About</a></li>
-          <li><a href="hikes.html"      class="${page==='hikes'?'active':''}">Hike Schedule</a></li>
+          <li><a href="hikes.html"      class="${page==='hikes'?'active':''}">Hikes</a></li>
           <li><a href="trails.html"     class="${page==='trails'?'active':''}">Trail Finder</a></li>
           <li><a href="membership.html" class="${page==='membership'?'active':''}">Membership</a></li>
           <li><a href="contact.html"    class="${page==='contact'?'active':''}">Contact</a></li>
         </ul>
-        <a href="membership.html" class="nav-cta">Join the Club</a>
+        <a href="membership.html" class="nav-cta">Join</a>
       </div>
     </header>
   `;
@@ -30,18 +28,11 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid">
-          <div>
-            <a href="index.html" class="brand">
-              <span class="logo">W</span>
-              <span class="brand-text">
-                Wisconsin Go Hiking Club
-                <small>Boots on trails since 1924</small>
-              </span>
-            </a>
-            <p style="font-size:.94rem; max-width:300px; margin-top:14px;">
-              A non-profit community of hikers exploring Wisconsin's
-              wild places — the Ice Age Trail, North Country Trail,
-              state parks and forest paths.
+          <div class="footer-brand">
+            <img src="images/logo-banner.png" alt="WGHC" onerror="this.style.display='none'">
+            <p style="font-size:.88rem; max-width:300px;">
+              A non-profit community of hikers exploring Wisconsin's wild places — the
+              Ice Age Trail, North Country Trail, state parks and forest paths.
             </p>
           </div>
           <div>
@@ -63,7 +54,7 @@
             </ul>
           </div>
           <div>
-            <h4>Stay Connected</h4>
+            <h4>Connect</h4>
             <ul>
               <li><a href="contact.html">Contact Us</a></li>
               <li><a href="#">Newsletter</a></li>
@@ -73,8 +64,8 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <span>© 2026 Wisconsin Go Hiking Club. A 501(c)(3) non-profit organization.</span>
-          <span><a href="#" style="color:rgba(247,241,225,.7)">Privacy</a> · <a href="#" style="color:rgba(247,241,225,.7)">Code of Conduct</a></span>
+          <span>© 2026 Wisconsin Go Hiking Club · 501(c)(3) non-profit</span>
+          <span><a href="#">Privacy</a> · <a href="#">Code of Conduct</a></span>
         </div>
       </div>
     </footer>

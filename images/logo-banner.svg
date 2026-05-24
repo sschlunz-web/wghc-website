@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" role="img" aria-label="Wisconsin Go Hiking Club banner">
+  <title>Wisconsin Go Hiking Club — 104 Years of Adventure</title>
+  <defs>
+    <!-- A simplified Wisconsin state outline (approximate, recognizable) -->
+    <clipPath id="wiClip">
+      <path d="M 60 60
+               L 75 55 L 95 50 L 130 48 L 160 50 L 185 60 L 200 80
+               L 205 110 L 215 130 L 225 145 L 230 165 L 235 185
+               L 248 210 L 260 230 L 270 255 L 268 280 L 255 300
+               L 230 310 L 200 312 L 165 308 L 130 295 L 100 280
+               L 85 260 L 75 235 L 70 200 L 64 165 L 58 130 L 56 95
+               L 60 60 Z"/>
+    </clipPath>
+    <linearGradient id="wiSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9dceb"/>
+      <stop offset="55%" stop-color="#e2ebd5"/>
+    </linearGradient>
+    <linearGradient id="wiHills" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b8e5a"/>
+      <stop offset="100%" stop-color="#3e5530"/>
+    </linearGradient>
+    <linearGradient id="wiTrail" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4be88"/>
+      <stop offset="100%" stop-color="#9f7f48"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer rounded plate -->
+  <rect x="6" y="6" width="988" height="348" rx="40" ry="40"
+        fill="#fbf7ec" stroke="#1c3320" stroke-width="4"/>
+
+  <!-- Wisconsin shape with landscape -->
+  <g>
+    <!-- subtle outer shadow path (offset) -->
+    <path d="M 60 60 L 75 55 L 95 50 L 130 48 L 160 50 L 185 60 L 200 80
+             L 205 110 L 215 130 L 225 145 L 230 165 L 235 185
+             L 248 210 L 260 230 L 270 255 L 268 280 L 255 300
+             L 230 310 L 200 312 L 165 308 L 130 295 L 100 280
+             L 85 260 L 75 235 L 70 200 L 64 165 L 58 130 L 56 95 L 60 60 Z"
+          fill="none" stroke="#1c3320" stroke-width="4" stroke-linejoin="round"/>
+    <g clip-path="url(#wiClip)">
+      <rect x="40" y="40" width="240" height="290" fill="url(#wiSky)"/>
+      <!-- Distant hills -->
+      <path d="M 40 200 Q 110 160 175 185 T 280 195 L 280 330 L 40 330 Z" fill="url(#wiHills)" opacity=".85"/>
+      <!-- Lake (light water) -->
+      <ellipse cx="170" cy="180" rx="50" ry="14" fill="#cfe4ee" opacity=".9"/>
+      <!-- Foreground hill -->
+      <path d="M 40 240 Q 90 215 150 235 Q 200 250 280 240 L 280 330 L 40 330 Z" fill="#4a6c44"/>
+      <!-- Trees -->
+      <ellipse cx="85"  cy="220" rx="14" ry="24" fill="#3e5530"/>
+      <ellipse cx="105" cy="232" rx="11" ry="18" fill="#34452a"/>
+      <ellipse cx="225" cy="225" rx="14" ry="22" fill="#3e5530"/>
+      <ellipse cx="245" cy="240" rx="12" ry="18" fill="#34452a"/>
+      <!-- Trail through center -->
+      <path d="M 165 320 Q 145 280 160 250 Q 178 220 200 218"
+            fill="none" stroke="url(#wiTrail)" stroke-width="10" stroke-linecap="round"/>
+      <!-- Trail marker post -->
+      <rect x="148" y="278" width="3" height="18" fill="#5c4a36"/>
+      <rect x="142" y="276" width="15" height="9" fill="#fbf7ec" stroke="#5c4a36" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- WISCONSIN text (top, slight arch) -->
+  <g font-family="Fraunces, Georgia, serif" fill="#1c3320">
+    <text x="640" y="120" text-anchor="middle" font-weight="700" font-size="76" letter-spacing="2">WISCONSIN</text>
+  </g>
+
+  <!-- EST. 1924 with bullet decoration -->
+  <g font-family="Fraunces, Georgia, serif" fill="#5c4a36">
+    <line x1="380" y1="158" x2="540" y2="158" stroke="#5c4a36" stroke-width="1.5"/>
+    <circle cx="555" cy="158" r="3" fill="#5c4a36"/>
+    <text x="640" y="166" text-anchor="middle" font-weight="600" font-size="24" letter-spacing="6">EST. 1924</text>
+    <circle cx="725" cy="158" r="3" fill="#5c4a36"/>
+    <line x1="740" y1="158" x2="900" y2="158" stroke="#5c4a36" stroke-width="1.5"/>
+  </g>
+
+  <!-- GO mark (octagonal-ish circle) + HIKING text -->
+  <g transform="translate(420 175)">
+    <circle cx="60" cy="60" r="56" fill="#fbf7ec" stroke="#1c3320" stroke-width="3.5"/>
+    <circle cx="60" cy="60" r="48" fill="none" stroke="#1c3320" stroke-width="1.5"/>
+    <text x="60" y="80" font-family="Fraunces, Georgia, serif" font-weight="700"
+          font-size="54" letter-spacing="-2" fill="#1c3320" text-anchor="middle">GO</text>
+  </g>
+
+  <g font-family="Fraunces, Georgia, serif" fill="#1c3320">
+    <text x="720" y="250" text-anchor="middle" font-weight="700" font-size="76" letter-spacing="2">HIKING</text>
+  </g>
+
+  <!-- Bottom: 104 YEARS OF ADVENTURE with laurel marks -->
+  <g font-family="Fraunces, Georgia, serif" fill="#5c4a36">
+    <!-- left laurel -->
+    <path d="M 380 308 q 18 -8 36 0 q -10 5 -18 4 q -8 -1 -18 -4 z" fill="#6b8e5a"/>
+    <path d="M 420 308 q 14 -6 28 0" fill="none" stroke="#6b8e5a" stroke-width="2"/>
+    <text x="640" y="316" text-anchor="middle" font-weight="600" font-size="24" letter-spacing="6">104 YEARS OF ADVENTURE</text>
+    <path d="M 860 308 q -14 -6 -28 0" fill="none" stroke="#6b8e5a" stroke-width="2"/>
+    <path d="M 900 308 q -18 -8 -36 0 q 10 5 18 4 q 8 -1 18 -4 z" fill="#6b8e5a"/>
+  </g>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Wisconsin Go Hiking Club seal">
+  <title>Wisconsin Go Hiking Club — Est. 1924</title>
+  <defs>
+    <clipPath id="innerCircle">
+      <circle cx="200" cy="200" r="125"/>
+    </clipPath>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cfe4ee"/>
+      <stop offset="60%" stop-color="#e5eed8"/>
+    </linearGradient>
+    <linearGradient id="hills" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b8e5a"/>
+      <stop offset="100%" stop-color="#3e5530"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9b078"/>
+      <stop offset="100%" stop-color="#8a6f3a"/>
+    </linearGradient>
+
+    <!-- Curved text paths -->
+    <path id="topArc"    d="M 70,200 A 130,130 0 0 1 330,200" fill="none"/>
+    <path id="bottomArc" d="M 80,210 A 120,120 0 0 0 320,210" fill="none"/>
+  </defs>
+
+  <!-- Outer disc -->
+  <circle cx="200" cy="200" r="196" fill="#fbf7ec"/>
+  <circle cx="200" cy="200" r="196" fill="none" stroke="#1c3320" stroke-width="4"/>
+  <circle cx="200" cy="200" r="183" fill="none" stroke="#1c3320" stroke-width="2"/>
+
+  <!-- Inner scene (clipped to inner circle) -->
+  <g clip-path="url(#innerCircle)">
+    <rect x="75" y="75" width="250" height="250" fill="url(#sky)"/>
+    <!-- Distant hills -->
+    <path d="M 75 240 Q 130 200 175 225 T 250 215 T 325 235 L 325 325 L 75 325 Z" fill="url(#hills)" opacity=".75"/>
+    <!-- Closer trees (left) -->
+    <ellipse cx="105" cy="225" rx="22" ry="34" fill="#3e5530"/>
+    <ellipse cx="125" cy="240" rx="18" ry="28" fill="#4a6c44"/>
+    <!-- Trail -->
+    <path d="M 200 320 Q 180 270 195 230 Q 215 200 235 195" fill="none" stroke="#c9b078" stroke-width="14" stroke-linecap="round"/>
+    <!-- Ground -->
+    <path d="M 75 290 Q 175 270 325 295 L 325 325 L 75 325 Z" fill="url(#ground)" opacity=".55"/>
+    <!-- Pine right -->
+    <ellipse cx="280" cy="230" rx="20" ry="32" fill="#3e5530"/>
+  </g>
+
+  <!-- Center GO mark plate -->
+  <circle cx="200" cy="200" r="62" fill="#fbf7ec"/>
+  <circle cx="200" cy="200" r="62" fill="none" stroke="#1c3320" stroke-width="3"/>
+  <circle cx="200" cy="200" r="54" fill="none" stroke="#1c3320" stroke-width="1.5"/>
+  <text x="200" y="222" font-family="Fraunces, Georgia, serif" font-weight="700"
+        font-size="58" letter-spacing="-2" fill="#1c3320" text-anchor="middle">GO</text>
+
+  <!-- Top arched text -->
+  <text font-family="Fraunces, Georgia, serif" font-weight="700" font-size="26"
+        letter-spacing="6" fill="#1c3320">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">WISCONSIN</textPath>
+  </text>
+  <!-- Bottom arched text -->
+  <text font-family="Fraunces, Georgia, serif" font-weight="700" font-size="22"
+        letter-spacing="5" fill="#1c3320">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">GO HIKING CLUB</textPath>
+  </text>
+
+  <!-- Side stars / 1924 -->
+  <text x="50" y="208" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="16"
+        letter-spacing="3" fill="#1c3320" text-anchor="middle">EST</text>
+  <text x="350" y="208" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="16"
+        letter-spacing="2" fill="#1c3320" text-anchor="middle">1924</text>
+
+  <!-- Decorative dots -->
+  <circle cx="84"  cy="200" r="3" fill="#8b6f3a"/>
+  <circle cx="316" cy="200" r="3" fill="#8b6f3a"/>
+</svg>
