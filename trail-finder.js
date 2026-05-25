@@ -10,6 +10,7 @@ const SEGMENTS    = window.WGHC_SEGMENTS || [];
 const PARKS       = window.WGHC_PARKS || [];
 const AREAS       = window.WGHC_AREAS || [];
 const ELEV_SUM    = window.WGHC_ELEV_SUMMARY || {};
+const AREA_MILEAGE= window.WGHC_AREA_MILEAGE || {};   // area_id → total miles
 const TRAIL_BY_ID = Object.fromEntries(TRAILS_LIST.map(t => [t.id, t]));
 
 // Convert to a single unified row shape
@@ -34,6 +35,7 @@ const PARK_ROWS = PARKS.map(p => ({
 const AREA_ROWS = AREAS.map(a => ({
   _kind: "area",
   id: "area-" + a.id,
+  _areaId: a.id,                       // original id for polyline lookup
   tid: "area",
   type: "area",
   name: a.name,
@@ -43,7 +45,7 @@ const AREA_ROWS = AREAS.map(a => ({
   areaType: a.type,
   operator: a.operator,
   ecoLandscape: a.eco_landscape,
-  miles: null,
+  miles: AREA_MILEAGE[a.id] || null,   // total mapped trail miles in this area
   lat: a.lat,
   lng: a.lng,
   diff: "",
@@ -208,8 +210,12 @@ function cardHTML(r) {
     ? `<span class="tag park">${esc(r.parkType || "Park")}</span>` : "";
   const areaTag = r._kind === "area"
     ? `<span class="tag area">${esc(formatAreaType(r.areaType))}</span>` : "";
-  const milesBadge = (typeof r.miles === "number" && r.miles)
-    ? `<span class="miles-badge">${r.miles.toFixed(1)} mi</span>` : "";
+  // Miles badge — segments show their length; areas show total mapped trail miles
+  let milesBadge = "";
+  if (typeof r.miles === "number" && r.miles) {
+    const label = r._kind === "area" ? `${r.miles.toFixed(1)} mi mapped` : `${r.miles.toFixed(1)} mi`;
+    milesBadge = `<span class="miles-badge">${label}</span>`;
+  }
 
   // Elevation hint for segments
   const elev = ELEV_SUM[r.id];
@@ -263,8 +269,11 @@ function openDetail(id) {
     ? `<span class="tag connecting">Connecting route</span>` : "";
   const parkTag = r._kind === "park" ? `<span class="tag park">${esc(r.parkType || "Park")}</span>` : "";
   const areaTag = r._kind === "area" ? `<span class="tag area">${esc(formatAreaType(r.areaType))}</span>` : "";
-  const milesBadge = (typeof r.miles === "number" && r.miles)
-    ? `<span class="miles-badge">${r.miles.toFixed(1)} mi</span>` : "";
+  let milesBadge = "";
+  if (typeof r.miles === "number" && r.miles) {
+    const label = r._kind === "area" ? `${r.miles.toFixed(1)} mi mapped` : `${r.miles.toFixed(1)} mi`;
+    milesBadge = `<span class="miles-badge">${label}</span>`;
+  }
 
   const elev = ELEV_SUM[r.id];
   let elevHTML = "";
@@ -456,6 +465,29 @@ function featuresForRow(r) {
   return fc.features.filter(f => f.properties && f.properties.seg_id === r.id);
 }
 
+// ----- Area polyline lazy-loader -----
+// Each area's polylines live in a tiny per-area JS file at
+// data/area-polylines/<area-id>.js (built by scripts/build-area-polylines.js).
+const AREA_POLY_CACHE = {};        // area_id → FeatureCollection
+const __areaPolyWaiters = {};      // area_id → callback
+
+window.__WGHC_AREA_POLY__ = function (payload) {
+  const cb = __areaPolyWaiters[payload.id];
+  AREA_POLY_CACHE[payload.id] = payload.fc;
+  if (cb) { delete __areaPolyWaiters[payload.id]; cb(payload.fc); }
+};
+
+function loadAreaPolylines(areaId) {
+  return new Promise((resolve, reject) => {
+    if (AREA_POLY_CACHE[areaId]) return resolve(AREA_POLY_CACHE[areaId]);
+    __areaPolyWaiters[areaId] = resolve;
+    const s = document.createElement("script");
+    s.src = "data/area-polylines/" + areaId + ".js";
+    s.onerror = () => { delete __areaPolyWaiters[areaId]; reject(new Error("no polylines for " + areaId)); };
+    document.head.appendChild(s);
+  });
+}
+
 // Detail mini-map
 function initDetailMap(r) {
   const host = document.getElementById("detailMap");
@@ -486,6 +518,34 @@ function initDetailMap(r) {
       try { map.fitBounds(layer.getBounds(), { padding: [20, 20] }); } catch(e) {}
     }).catch(() => {});
   }
+
+  // Lazy load polylines for local areas (per-area file)
+  if (r._kind === "area" && r._areaId) {
+    loadAreaPolylines(r._areaId).then(fc => {
+      if (!fc || !fc.features || !fc.features.length) return;
+      const layer = L.geoJSON(fc, {
+        style: f => {
+          const t = (f.properties && f.properties.feature_type) || "trail";
+          const isTrail = t === "trail" || t === "path" || t === "footway";
+          return {
+            color: isTrail ? "#3e5530" : "#8b6f3a",
+            weight: isTrail ? 3 : 2,
+            opacity: isTrail ? .9 : .6,
+            dashArray: isTrail ? null : "4 4"
+          };
+        },
+        onEachFeature: (f, lyr) => {
+          const p = f.properties || {};
+          const name = p.unit_name || "";
+          const mi   = p.length_miles ? ` · ${p.length_miles.toFixed(2)} mi` : "";
+          const surf = p.surface ? ` · ${p.surface}` : "";
+          if (name || mi) lyr.bindTooltip(`${esc(name)}${mi}${surf}`, { sticky: true });
+        }
+      }).addTo(map);
+      try { map.fitBounds(layer.getBounds(), { padding: [20, 20] }); } catch(e) {}
+    }).catch(() => { /* no polylines for this area — fine, marker still shows */ });
+  }
+
   setTimeout(() => map.invalidateSize(), 100);
 }
 

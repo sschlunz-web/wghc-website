@@ -43,15 +43,13 @@ Working list of follow-ups for the site. Update as items land.
 
 ## 🗺️ Trail Finder enhancements
 
-- [ ] **Local-area polylines on the overview map** (~11 MB total).
-      Currently only IAT + NCT polylines render. To add the 4,189 local
-      polylines for state parks/forests:
-      - Split `local_polylines.json` into per-area files at build time
-      - Lazy-load each area's polyline only when a user clicks its
-        marker or expands its detail panel
-      - Optionally vector-tile the dataset with
-        [tippecanoe](https://github.com/felt/tippecanoe) → PMTiles for
-        instant pan/zoom
+- [ ] **Local-area polylines on the *statewide overview* map.**
+      Per-area polylines already lazy-load in the detail panel (167 of
+      295 areas have geometry). To draw them all on the statewide overview
+      simultaneously would mean either inlining ~4.3 MB or vector-tiling
+      via [tippecanoe](https://github.com/felt/tippecanoe) → PMTiles.
+      Skipping for now — the detail-panel rendering covers the main UX
+      need.
 
 - [ ] **Simplify polyline coordinates** with mapshaper
       (`mapshaper -simplify 10%`) to shrink IAT polylines from ~1.4 MB
@@ -115,6 +113,8 @@ Working list of follow-ups for the site. Update as items land.
 
 ## ✅ Done
 
+- [x] Per-area polyline lazy-loading in trail-detail map (167 areas covered, ~4.3 MB split into 167 small files via `scripts/build-area-polylines.js`)
+- [x] Total mapped trail miles shown on local-area result cards (e.g. "12.0 mi mapped")
 - [x] Initial 6-page site (Home, About, Hikes, Trails, Membership, Contact)
 - [x] Trail Finder with 228 segments + 70+ parks + 295 local areas
 - [x] Elevation profiles + Leaflet map in trail detail panel
