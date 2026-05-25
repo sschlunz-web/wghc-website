@@ -370,43 +370,59 @@ function drawElevChart(points) {
   const host = document.getElementById("elevChart");
   if (!host || !points || !points.length) return;
 
-  const W = 660, H = 160, P = 28;
-  const distM   = points.map(p => p[0]);
-  const elevFt  = points.map(p => p[1]);
-  const dMax    = distM[distM.length - 1] || 1;
-  const eMin    = Math.min(...elevFt);
-  const eMax    = Math.max(...elevFt);
-  const eRange  = Math.max(eMax - eMin, 30);
-  const xs = d => P + (d / dMax) * (W - P * 2);
-  const ys = e => H - P - ((e - eMin) / eRange) * (H - P * 2);
+  // Profile data shape: [distance_ft, elevation_ft]
+  const W = 660, H = 170;
+  const PAD_L = 56, PAD_R = 16, PAD_T = 14, PAD_B = 26;
 
-  let line = `M ${xs(distM[0]).toFixed(1)} ${ys(elevFt[0]).toFixed(1)}`;
-  let area = line;
+  const distFt = points.map(p => p[0]);
+  const elevFt = points.map(p => p[1]);
+  const dMax   = distFt[distFt.length - 1] || 1;
+  const eMin   = Math.min(...elevFt);
+  const eMax   = Math.max(...elevFt);
+  const eRange = Math.max(eMax - eMin, 30);
+
+  const xs = d => PAD_L + (d / dMax) * (W - PAD_L - PAD_R);
+  const ys = e => H - PAD_B - ((e - eMin) / eRange) * (H - PAD_T - PAD_B);
+
+  let line = `M ${xs(distFt[0]).toFixed(1)} ${ys(elevFt[0]).toFixed(1)}`;
   for (let i = 1; i < points.length; i++) {
-    line += ` L ${xs(distM[i]).toFixed(1)} ${ys(elevFt[i]).toFixed(1)}`;
+    line += ` L ${xs(distFt[i]).toFixed(1)} ${ys(elevFt[i]).toFixed(1)}`;
   }
-  area = line + ` L ${xs(dMax).toFixed(1)} ${H - P} L ${xs(0).toFixed(1)} ${H - P} Z`;
+  const area = line + ` L ${xs(dMax).toFixed(1)} ${H - PAD_B} L ${xs(0).toFixed(1)} ${H - PAD_B} Z`;
 
-  const distMi = (dMax / 1609.34).toFixed(1);
+  const distMi = (dMax / 5280).toFixed(2);
+  const eMid   = Math.round((eMin + eMax) / 2);
 
   host.innerHTML = `
-    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" width="100%" height="${H}" role="img" aria-label="Elevation profile chart">
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" width="100%" height="${H}" role="img" aria-label="Elevation profile chart">
       <defs>
         <linearGradient id="elevG" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"  stop-color="#2d5a3f" stop-opacity=".5"/>
           <stop offset="100%" stop-color="#2d5a3f" stop-opacity=".05"/>
         </linearGradient>
       </defs>
+
+      <!-- gridlines -->
+      <line x1="${PAD_L}" y1="${ys(eMax)}" x2="${W-PAD_R}" y2="${ys(eMax)}" stroke="#ebe3cf" stroke-width="1" stroke-dasharray="2 3"/>
+      <line x1="${PAD_L}" y1="${ys(eMid)}" x2="${W-PAD_R}" y2="${ys(eMid)}" stroke="#ebe3cf" stroke-width="1" stroke-dasharray="2 3"/>
+      <line x1="${PAD_L}" y1="${ys(eMin)}" x2="${W-PAD_R}" y2="${ys(eMin)}" stroke="#ebe3cf" stroke-width="1" stroke-dasharray="2 3"/>
+
+      <!-- elevation profile -->
       <path d="${area}" fill="url(#elevG)"/>
       <path d="${line}" fill="none" stroke="#2d5a3f" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 
-      <line x1="${P}" y1="${H-P}" x2="${W-P}" y2="${H-P}" stroke="#d9d0b8" stroke-width="1"/>
-      <line x1="${P}" y1="${P}"   x2="${P}"   y2="${H-P}" stroke="#d9d0b8" stroke-width="1"/>
+      <!-- axes -->
+      <line x1="${PAD_L}" y1="${H-PAD_B}" x2="${W-PAD_R}" y2="${H-PAD_B}" stroke="#d9d0b8" stroke-width="1"/>
+      <line x1="${PAD_L}" y1="${PAD_T}"   x2="${PAD_L}"   y2="${H-PAD_B}" stroke="#d9d0b8" stroke-width="1"/>
 
-      <text x="${P-4}" y="${P+4}"     text-anchor="end" font-size="10" fill="#6b7763">${Math.round(eMax)} ft</text>
-      <text x="${P-4}" y="${H-P+2}"   text-anchor="end" font-size="10" fill="#6b7763">${Math.round(eMin)} ft</text>
-      <text x="${P}"   y="${H-P+16}"  font-size="10" fill="#6b7763">0 mi</text>
-      <text x="${W-P}" y="${H-P+16}"  text-anchor="end" font-size="10" fill="#6b7763">${distMi} mi</text>
+      <!-- Y-axis labels (right-aligned to inside-left of chart, comfortable margin) -->
+      <text x="${PAD_L-6}" y="${ys(eMax)+3}" text-anchor="end" font-size="10" fill="#6b7763">${Math.round(eMax)} ft</text>
+      <text x="${PAD_L-6}" y="${ys(eMid)+3}" text-anchor="end" font-size="10" fill="#6b7763">${eMid} ft</text>
+      <text x="${PAD_L-6}" y="${ys(eMin)+3}" text-anchor="end" font-size="10" fill="#6b7763">${Math.round(eMin)} ft</text>
+
+      <!-- X-axis labels -->
+      <text x="${PAD_L}"   y="${H-PAD_B+14}" font-size="10" fill="#6b7763">0 mi</text>
+      <text x="${W-PAD_R}" y="${H-PAD_B+14}" text-anchor="end" font-size="10" fill="#6b7763">${distMi} mi</text>
     </svg>`;
 }
 
