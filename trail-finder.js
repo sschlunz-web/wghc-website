@@ -49,7 +49,18 @@ const AREA_ROWS = AREAS.map(a => ({
   diff: "",
 }));
 
-const ALL_ROWS = SEG_ROWS.concat(PARK_ROWS).concat(AREA_ROWS);
+// Deduplicate parks vs areas: many state parks appear in both datasets.
+// Match by (lowercase name + county). When a match exists, prefer the AREA
+// record because it has more info (operator, eco-landscape, named trails).
+const areaKeys = new Set(
+  AREA_ROWS.map(a => (a.name || "").trim().toLowerCase() + "|" + (a.county || "").trim().toLowerCase())
+);
+const PARK_ROWS_DEDUPED = PARK_ROWS.filter(p => {
+  const key = (p.name || "").trim().toLowerCase() + "|" + (p.county || "").trim().toLowerCase();
+  return !areaKeys.has(key);
+});
+
+const ALL_ROWS = SEG_ROWS.concat(PARK_ROWS_DEDUPED).concat(AREA_ROWS);
 
 // ---------- State ----------
 const params = new URLSearchParams(location.search);
