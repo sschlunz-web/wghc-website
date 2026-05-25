@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#2d4a2c">
   <title>Trail Finder — Wisconsin Go Hiking Club</title>
   <meta name="description" content="Search Wisconsin's Ice Age Trail and North Country Trail segments — plus state parks and local trail areas. Elevation profiles and interactive maps.">
-  <link rel="icon" type="image/png" href="images/logo-mark.png">
-  <link rel="apple-touch-icon" href="images/logo-mark.png">
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link rel="apple-touch-icon" href="images/logo-mark.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <div class="tool-group">
+        <div class="tool-group" id="diffGroup">
           <label class="lbl">Difficulty</label>
           <div class="chips" id="diffChips">
             <button class="chip active" data-diff="all">Any</button>
@@ -52,11 +52,11 @@
           </div>
         </div>
 
-        <div class="tool-group">
+        <div class="tool-group" id="typeGroup">
           <label class="lbl">Segments</label>
           <div class="chips" id="typeChips">
-            <button class="chip active" data-type="all">All</button>
-            <button class="chip" data-type="segment">Main</button>
+            <button class="chip" data-type="all">All</button>
+            <button class="chip active" data-type="segment">Trail</button>
             <button class="chip" data-type="connecting">Connecting</button>
           </div>
         </div>

@@ -57,7 +57,7 @@ const state = {
   q: params.get("q") || "",
   kind: params.get("trail") || params.get("kind") || "all",   // all / iat / nct / park / area
   diff: "all",
-  type: "all",
+  type: "segment",   // default: only "Trail" main segments (hide connecting routes)
   sort: "az",
 };
 
@@ -82,6 +82,17 @@ function setActiveChip(groupId, val) {
   const wrap = document.getElementById(groupId);
   const attr = groupId.replace("Chips", "");
   wrap.querySelectorAll(".chip").forEach(c => c.classList.toggle("active", c.dataset[attr] === val));
+}
+
+// Show/hide the Segments + Difficulty groups based on the selected kind.
+// Parks and Areas don't have segments or difficulty, so those filters are
+// meaningless and just add clutter.
+function updateFilterVisibility() {
+  const hideSegmentFilters = (state.kind === "park" || state.kind === "area");
+  const typeGroup = document.getElementById("typeGroup");
+  const diffGroup = document.getElementById("diffGroup");
+  if (typeGroup) typeGroup.style.display = hideSegmentFilters ? "none" : "";
+  if (diffGroup) diffGroup.style.display = hideSegmentFilters ? "none" : "";
 }
 function cap(s)  { return s ? s[0].toUpperCase() + s.slice(1) : ""; }
 function esc(s)  { if (s == null) return ""; return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
@@ -532,6 +543,7 @@ document.getElementById("kindChips").addEventListener("click", e => {
   const b = e.target.closest(".chip"); if (!b) return;
   state.kind = b.dataset.kind;
   setActiveChip("kindChips", state.kind);
+  updateFilterVisibility();
   render();
 });
 document.getElementById("diffChips").addEventListener("click", e => {
@@ -550,11 +562,12 @@ $sort.addEventListener("change", () => { state.sort = $sort.value; render(); });
 
 $reset.addEventListener("click", e => {
   e.preventDefault();
-  state.q = ""; state.kind = "all"; state.diff = "all"; state.type = "all"; state.sort = "az";
+  state.q = ""; state.kind = "all"; state.diff = "all"; state.type = "segment"; state.sort = "az";
   $search.value = ""; $sort.value = "az";
   setActiveChip("kindChips", "all");
   setActiveChip("diffChips", "all");
-  setActiveChip("typeChips", "all");
+  setActiveChip("typeChips", "segment");
+  updateFilterVisibility();
   render();
 });
 
@@ -598,6 +611,7 @@ $mapBtn.addEventListener("click", () => {
 })();
 
 // First render
+updateFilterVisibility();
 render();
 
 })();
